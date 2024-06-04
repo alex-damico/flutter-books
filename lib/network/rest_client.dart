@@ -13,5 +13,5 @@ abstract class RestClient {
   Future<List<Book>> getBooks();
 
   @POST('/')
-  Future<Book> createBook(Book book);
+  Future<Book> createBook(@Body() Book book);
 }

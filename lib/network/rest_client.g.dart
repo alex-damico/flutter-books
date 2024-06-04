@@ -54,7 +54,8 @@ class _RestClient implements RestClient {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(book.toJson());
     final _result =
         await _dio.fetch<Map<String, dynamic>>(_setStreamType<Book>(Options(
       method: 'POST',
