@@ -35,6 +35,11 @@ class HomePage extends StatelessWidget {
           return const Center(child: Text("Caso non gestito"));
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
