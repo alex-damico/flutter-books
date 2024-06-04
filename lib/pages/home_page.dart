@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:logging/logging.dart';
 
 import '../models/book.dart';
+import '../widgets/books_widget.dart';
 
 class HomePage extends StatelessWidget {
   final log = Logger('HomePage');
@@ -26,8 +27,7 @@ class HomePage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
-            log.info(snapshot.data.toString());
-            return const Center(child: Text("Ci sono dati"));
+            return BooksWidget(books: snapshot.data!);
           } else if (snapshot.hasError) {
             return const Center(child: Text("Errore", style: TextStyle(color: Colors.red, fontSize: 50)));
           }
