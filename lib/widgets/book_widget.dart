@@ -14,7 +14,9 @@ class BookWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           ListTile(
-            leading: book.urlImage != null ? Image.network(book.urlImage!) : const FlutterLogo(size: 50),
+            leading: book.urlImage != null && book.urlImage!.isNotEmpty
+                ? Image.network(book.urlImage!)
+                : const FlutterLogo(size: 50),
             title: Text(book.name),
             subtitle: Text(book.author),
             trailing: const Icon(Icons.arrow_forward),

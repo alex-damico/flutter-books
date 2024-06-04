@@ -1,4 +1,5 @@
 import 'package:books/network/rest_client.dart';
+import 'package:books/pages/insert_page.dart';
 import 'package:books/repositories/book_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
@@ -7,10 +8,16 @@ import 'package:logging/logging.dart';
 import '../models/book.dart';
 import '../widgets/books_widget.dart';
 
-class HomePage extends StatelessWidget {
-  final log = Logger('HomePage');
+class HomePage extends StatefulWidget {
 
-  HomePage({super.key});
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final log = Logger('HomePage');
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class HomePage extends StatelessWidget {
         title: const Text('Books'),
       ),
       body: FutureBuilder<List<Book>>(
-        future: bookRepository.getAll(),
+        future: loadData(bookRepository),
         builder: (BuildContext context, AsyncSnapshot<List<Book>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -37,9 +44,19 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const InsertPage()),
+          ).then((_) => setState(() {
+            loadData(bookRepository);
+          }));
         },
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  Future<List<Book>> loadData(BookRepository bookRepository) {
+    return bookRepository.getAll();
   }
 }

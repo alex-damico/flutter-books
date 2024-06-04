@@ -1,4 +1,4 @@
-import 'package:books/pages/insert_page.dart';
+import 'package:books/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: InsertPage(),
+      home: const HomePage(),
     );
   }
 }

@@ -39,9 +39,10 @@ class _InsertBookWidgetState extends State<InsertBookWidget> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    Book createBook = Book(name: name, description: description, author: author, urlImage: "");
+                    Book createBook = Book(name: name, description: description, author: author);
 
                     bookRepository.create(createBook).then((_) {
+                      Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text('Salvataggio con successo', style: TextStyle(color: Colors.black)),
