@@ -1,3 +1,4 @@
+import 'package:books/widgets/book_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../models/book.dart';
@@ -13,12 +14,9 @@ class BooksWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       itemCount: books.length,
       itemBuilder: (BuildContext context, int index) {
-        return SizedBox(
-          height: 50,
-          child: Center(child: Text('Name ${books[index].name}')),
-        );
+        return BookWidget(book: books[index]);
       },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 10),
     );
   }
 }
