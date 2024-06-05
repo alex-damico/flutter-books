@@ -1,3 +1,4 @@
+import 'package:books/pages/details_page.dart';
 import 'package:flutter/material.dart';
 
 import '../models/book.dart';
@@ -19,7 +20,16 @@ class BookWidget extends StatelessWidget {
                 : const FlutterLogo(size: 50),
             title: Text(book.name),
             subtitle: Text(book.author),
-            trailing: const Icon(Icons.arrow_forward),
+            trailing: IconButton(
+              icon: const Icon(Icons.arrow_forward),
+              tooltip: 'Dettaglio',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DetailsBook(book: book)),
+                );
+              },
+            ),
           ),
         ],
       ),
